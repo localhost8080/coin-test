@@ -47,14 +47,46 @@ function input_has_success(object) {
 }
 
 function show_number_of_pence(object) {
-    $('#number_of_pence').html(convert_to_pence(object) + " pennies");
+    // this could be simplified to
+    // $('#number_of_pence').html(convert_to_pence(object) + " pennies");
+    // but for readability I've left as-is
+
+    // get the number of pennies
+    var number_of_pence = convert_to_pence(object);
+    // set the p tag to show how many we have
+    $('#number_of_pence').html(number_of_pence + " pennies");
+}
+
+function greedy_algo(object) {
+    // we need to setup a few things
+    // firstly, whats the denominations of coins:
+    // an object
+    var denominations = { "£2": 200, "£1": 100, "50p": 50, "20p": 20, "10p": 10, "5p": 5, "2p": 2, "1p": 1 };
+
+    // now, we need some stacks
+    // counter - keep track of the number of each coin we have
+    var counter = [];
+    // keep whats left
+    var remainder;
+    // our number of pennies
+    var number_of_pennies = convert_to_pence(object);
+
+    // we can use forEach, but for backward compat its best to use for
+    for (key in denominations) {
+        console.log(denominations.key);
+    }
+
+    // var y = ;
+    // var x = y % ;
+
+    return counter;
 }
 
 function run_input_values(object) {
     if (validate_input(object)) {
         input_has_success(object);
         show_number_of_pence(object);
-
+        greedy_algo(object);
     } else {
         input_has_error(object);
     }

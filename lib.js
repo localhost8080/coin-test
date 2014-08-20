@@ -24,6 +24,8 @@ function convert_to_pence(object) {
     // eg 4.23 is £4.23p
     var number_of_pounds = object.val().replace(regex, "");
     var number_of_pence = number_of_pounds * 100;
+    console.log('pounds:' + number_of_pounds);
+    console.log('pence:' + number_of_pence);
     return number_of_pence;
 
 }

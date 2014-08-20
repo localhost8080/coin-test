@@ -41,7 +41,7 @@ function input_has_success(object) {
 }
 
 function show_number_in_pence(object) {
-    var number_of_pence =
+    var number_of_pence = convert_to_pence(object);
     $('#number_in_pence').html(numer_of_pence);
 }
 

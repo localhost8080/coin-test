@@ -15,9 +15,7 @@ function validate_input(object) {
 
 function convert_to_pence(value) {
     // TODO convert the input into an int
-    int pounds = (int)value;
-    int pennies = (int)((value - pounds) * 100);
-    String result = String.Format("{0:#0}{1:00}", pounds, pence);
+
 }
 
 function input_has_error(object) {

@@ -3,10 +3,10 @@
 
 function validate_input(object) {
     // regex - modified from http://regex101.com/r/fH3lV1/2 to fit sterling ( optional , as thousand separator . as decimal separator)
-    // - explination at http://regex101.com/r/hT3aD0/1
-    // ^\s*-?(\u00A3|\s*)((\d{1,3}(,(\d){3})*)|\d*)(\.\d{1,2})?(\s?|p)\s*$
+    // - explination at http://regex101.com/r/hT3aD0/2
+    // ^\s*-?(\u00A3{1}|\s*)((\d{1,3}(,(\d){3})*)|\d+)(\.\d{1,2})?(\s?|p)\s*$
     // regex doesnt make £p invalid - need to sort the order
-    var regex = /^\s*-?(\u00A3|\s*)((\d{1,3}(,(\d){3})*)|\d*)(\.\d{1,2})?(\s?|p)\s*$/;
+    var regex = /^\s*-?(\u00A3{1}|\s*)((\d{1,3}(,(\d){3})*)|\d+)(\.\d{1,2})?(\s?|p)\s*$/;
     if (regex.test(object.val())) {
         // match
         return true;

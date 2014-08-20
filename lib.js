@@ -73,7 +73,7 @@ function greedy_algo(object) {
 
     // we can use forEach, but for backward compat its best to use for
     for (key in denominations) {
-        console.log(denominations.key);
+        console.log(denominations.key().val());
     }
 
     // var y = ;

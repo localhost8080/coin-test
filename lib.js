@@ -38,6 +38,8 @@ function input_has_error(object) {
     // set the input box to error state
     object.parent().removeClass('has-success');
     object.parent().addClass('has-error');
+    $('#number_of_pence').html('error');
+    $('#results').html('');
 }
 
 function input_has_success(object) {
@@ -65,28 +67,56 @@ function greedy_algo(object) {
 
     // now, we need some stacks
     // counter - keep track of the number of each coin we have
-    var counter = [];
+    var counter = {};
     // keep whats left
     var remainder;
     // our number of pennies
-    var number_of_pennies = convert_to_pence(object);
+    var number_of_pennies_left = convert_to_pence(object);
 
     // we can use forEach, but for backward compat its best to use for
     for (key in denominations) {
-        console.log(denominations.key().val());
+
+        // check if the number_of_pennies_left is less than the current value of the coin
+        if (number_of_pennies_left >= denominations[key]) {
+            // dont really need to do this, but makwes it easier to see the calculation
+            var x = number_of_pennies_left;
+            var y = denominations[key];
+
+            // number of times its divisible
+            // number of pennies left minus the remainder divided by the value of the coin
+            // remainder is x mod y
+            var z = ( x - ( x % y ) ) / y;
+
+            // set the number_of_coins_left to the remainder
+            number_of_pennies_left = x % y;
+
+            // push it into the counter object
+            counter[key] = z;
+
+        }
+
     }
-
-    // var y = ;
-    // var x = y % ;
-
+    //console.log(counter);
     return counter;
+}
+
+function show_table_of_results(object){
+    var data = '<table class="table table-striped">';
+    data += '<thead><th>Coin</th><th>Count</th></thead>';
+    // make a simple table of the results [tabular data is good in a table]
+    for (key in object) {
+        data += '<tr><td>' + key + '</td><td>' + object[key] + '</td></tr>';
+    }
+    data += '</table>';
+    $('#results').html(data);
 }
 
 function run_input_values(object) {
     if (validate_input(object)) {
         input_has_success(object);
         show_number_of_pence(object);
-        greedy_algo(object);
+        var counter = greedy_algo(object);
+        show_table_of_results(counter);
     } else {
         input_has_error(object);
     }

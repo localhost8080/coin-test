@@ -17,17 +17,21 @@ function validate_input(object) {
 }
 
 function convert_to_pence(object) {
-    // TODO convert the input into an int
+
+    // this whole function should be simplified to
+    // return object.val().replace(/[^0-9.]/g, "") * 100;
+    // but for the sake of readability I've left it split
+
     // this regex is 'not 0-9 or a dot, globally'
     var regex = /[^0-9.]/g;
     // this replaces not numbers with nothingness, leaving us with the number of pounds
     // eg 4.23 is £4.23p
     var number_of_pounds = object.val().replace(regex, "");
     var number_of_pence = number_of_pounds * 100;
-    console.log('pounds:' + number_of_pounds);
-    console.log('pence:' + number_of_pence);
-    return number_of_pence;
 
+    //console.log('pounds:' + number_of_pounds);
+    //console.log('pence:' + number_of_pence);
+    return number_of_pence;
 }
 
 function input_has_error(object) {
@@ -42,15 +46,14 @@ function input_has_success(object) {
     object.parent().addClass('has-success');
 }
 
-function show_number_in_pence(object) {
-    var number_of_pence = convert_to_pence(object);
-    $('#number_in_pence').html(number_of_pence);
+function show_number_of_pence(object) {
+    $('#number_of_pence').html(convert_to_pence(object) + " pennies");
 }
 
 function run_input_values(object) {
     if (validate_input(object)) {
         input_has_success(object);
-        show_number_in_pence(object);
+        show_number_of_pence(object);
 
     } else {
         input_has_error(object);

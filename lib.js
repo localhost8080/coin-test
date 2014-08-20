@@ -26,8 +26,11 @@ function convert_to_pence(object) {
     var regex = /[^0-9.]/g;
     // this replaces not numbers with nothingness, leaving us with the number of pounds
     // eg 4.23 is £4.23p
-    var number_of_pounds = object.val().replace(regex, "");
-    var number_of_pence =  object.val().replace(regex, "") * 100;
+    var number_of_pounds = parseInt(object.val().replace(regex, ""),10);
+    // fix javascripts broken floats (almost)
+    // better solution is to use bigDecimal https://github.com/dtrebbien/BigDecimal.js
+    // though for this test, given the time this should (hopefully) suffice, just dont try numbers with > 16 digits :|
+    var number_of_pence =  parseFloat(object.val().replace(regex, "")*100).toFixed(0);
 
     //console.log('pounds:' + number_of_pounds);
     //console.log('pence:' + number_of_pence);
@@ -86,8 +89,6 @@ function greedy_algo(object) {
             // number of pennies left minus the remainder divided by the value of the coin
             // remainder is x mod y
             var z = ( x - ( x % y ) ) / y;
-
-            // TODO there is a bug in this with eg 58p or anything more than 16 digits after converting to pennies
 
             // set the number_of_coins_left to the remainder
             number_of_pennies_left = x % y;

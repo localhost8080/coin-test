@@ -37,9 +37,16 @@ function input_has_success(object) {
     object.parent().addClass('has-success');
 }
 
+function show_number_in_pence(object) {
+    var number_of_pence =
+    $('#number_in_pence').html(numer_of_pence);
+}
+
 function run_input_values(object) {
     if (validate_input(object)) {
         input_has_success(object);
+        show_number_in_pence(object);
+
     } else {
         input_has_error(object);
     }

@@ -1,3 +1,6 @@
+// simple validator - does a match against the regex and sets a class on the input
+
+
 function validate_input(object) {
     // regex - modified from http://regex101.com/r/fH3lV1/2 to fit sterling ( optional , as thousand separator . as decimal separator)
     // - explination at http://regex101.com/r/hT3aD0/1
@@ -51,8 +54,6 @@ function run_input_values(object) {
         input_has_error(object);
     }
 }
-
-// simple validator - does a match against the regex and sets a class on the input
 
 $(function () {
 // bind keypresses on the form input to trigger the validator

@@ -13,8 +13,15 @@ function validate_input(object) {
     }
 }
 
-function convert_to_pence(value) {
+function convert_to_pence(object) {
     // TODO convert the input into an int
+    // this regex is 'not 0-9 or a dot, globally'
+    var regex = /[^0-9.]/g;
+    // this replaces not numbers with nothingness, leaving us with the number of pounds
+    // eg 4.23 is £4.23p
+    var number_of_pounds = object.val().replace(regex, "");
+    var number_of_pence = number_of_pounds * 100;
+    return number_of_pence;
 
 }
 

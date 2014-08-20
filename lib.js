@@ -87,6 +87,8 @@ function greedy_algo(object) {
             // remainder is x mod y
             var z = ( x - ( x % y ) ) / y;
 
+            // there is a bug in this with eg 58p
+
             // set the number_of_coins_left to the remainder
             number_of_pennies_left = x % y;
 
